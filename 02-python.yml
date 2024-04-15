@@ -1,0 +1,79 @@
+---
+- name: Install Python pip
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Update apt repo and cache on Ubuntu boxes
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
+      become: true
+
+    - name: Upgrade all apt packages
+      apt:
+        upgrade: yes
+        force_apt_get: yes
+      become: true
+
+    - name: Install Python pip
+      apt:
+        name:
+          - python-pip
+          - python3-pip
+        state: present
+        update_cache: true
+        force_apt_get: yes
+      become: true
+
+    - name: Install Python packages
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - psycopg2-binary
+      become: true
+
+    - name: Task using Python 3
+      command: /path/to/python3_script.py
+      args:
+        chdir: /path/to/script_directory
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+
+- name: Install Python pip
+  hosts: all
+  gather_facts: true
+
+  tasks:
+    - name: Update package cache on all systems
+      package:
+        name: '*'
+        state: latest
+      become: true
+      when: ansible_distribution == 'Amazon' or ansible_distribution == 'CentOS'
+
+    - name: Install Python pip on Amazon Linux and CentOS
+      package:
+        name: python3-pip
+        state: present
+      become: true
+      when: ansible_distribution == 'Amazon' or ansible_distribution == 'CentOS'
+
+    - name: Install Python packages using pip
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - psycopg2-binary
+      become: true
+
+    - name: Task using Python 3
+      command: /path/to/python3_script.py
+      args:
+        chdir: /path/to/script_directory
+      vars:
+        ansible_python_interpreter: /usr/bin/python3
+      when: ansible_distribution == 'Amazon' or ansible_distribution == 'CentOS'
+...      
+
+
