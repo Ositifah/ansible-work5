@@ -95,7 +95,7 @@
     - name: Install Flask inside virtual environment
       command: >
         /home/centos/FlaskWebApp/flask-app/bin/python -m pip install Flask
-       args:
+      args:
           creates: /home/centos/FlaskWebApp/flask-app/bin/flask 
         
     - name: Get the .py file
