@@ -93,10 +93,11 @@
         creates: /home/centos/FlaskWebApp/flask-app/bin/flask
 
     - name: Install Flask inside virtual environment
-      pip:
-        name: Flask
-        executable: /home/centos/FlaskWebApp/flask-app/bin/python
-
+       command: >
+        /home/centos/FlaskWebApp/flask-app/bin/python -m pip install Flask
+       args:
+          creates: /home/centos/FlaskWebApp/flask-app/bin/flask 
+        
     - name: Get the .py file
       copy:
         src: /home/centos/ansible-work5/app.py
