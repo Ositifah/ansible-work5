@@ -81,9 +81,10 @@
 
 
     - name: Create virtual environment for Flask
-      command: virtualenv --python=python3 flask-app
+      command: /usr/local/bin/virtualenv --python=python3 flask-app
       args:
         chdir: /home/centos/FlaskWebApp
+
 
     - name: Activate virtual environment
       command: source bin/activate
