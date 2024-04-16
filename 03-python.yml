@@ -93,7 +93,7 @@
         creates: /home/centos/FlaskWebApp/flask-app/bin/flask
 
     - name: Install Flask inside virtual environment
-       command: >
+      command: >
         /home/centos/FlaskWebApp/flask-app/bin/python -m pip install Flask
        args:
           creates: /home/centos/FlaskWebApp/flask-app/bin/flask 
