@@ -86,15 +86,16 @@
         chdir: /home/centos/FlaskWebApp
 
 
-    - name: Activate virtual environment
-      command: source bin/activate
+    - name: Activate virtual environment and install Flask
+      command: >
+        /home/centos/FlaskWebApp/flask-app/bin/python -m pip install Flask
       args:
-        chdir: /home/centos/FlaskWebApp/flask-app
+        creates: /home/centos/FlaskWebApp/flask-app/bin/flask
 
     - name: Install Flask inside virtual environment
       pip:
         name: Flask
-        virtualenv: /home/centos/FlaskWebApp/flask-app
+        executable: /home/centos/FlaskWebApp/flask-app/bin/python
 
     - name: Get the .py file
       copy:
@@ -102,7 +103,8 @@
         dest: /home/centos/FlaskWebApp/flask-app/app.py
 
     - name: Run the Flask application
-      command: python3 app.py
+      command: >
+        /home/centos/FlaskWebApp/flask-app/bin/python /home/centos/FlaskWebApp/flask-app/app.py
       args:
         chdir: /home/centos/FlaskWebApp/flask-app
 
@@ -110,5 +112,4 @@
     - name: Check Flask application in browser
       debug:
         msg: Check your browser using the IP_ADDRESS:5000
-...        
 
