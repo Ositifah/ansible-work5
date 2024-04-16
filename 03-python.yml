@@ -69,11 +69,11 @@
       args:
         creates: /usr/bin/pip3 
 
-
     - name: Install virtualenv using Python 3 pip
       pip:
         name: virtualenv
-        executable: python3
+        executable: pip3
+
 
     - name: Create virtual environment for Flask
       command: virtualenv --python=python3 flask-app
