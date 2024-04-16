@@ -73,6 +73,11 @@
       pip:
         name: virtualenv
         executable: pip3
+    
+    - name: Install python3-virtualenv package
+      yum:
+        name: python3-virtualenv
+        state: present
 
 
     - name: Create virtual environment for Flask
