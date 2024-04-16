@@ -1,0 +1,34 @@
+---
+- name: Update n5
+  hosts: n5
+  become: yes
+
+  tasks:
+    - name: create directory
+      file:
+        path: /home/centos/FlaskWebApp
+        state: directory
+
+    - name: Upload Flask application file
+      copy:
+        src: /home/centos/ansible-work5/app.py
+        dest: /home/centos/FlaskWebApp/app.py
+        force: yes    
+
+- name: Update n1
+  hosts: n1
+  become: yes
+
+  tasks:
+    - name: create directory
+      file:
+        path: /home/ubuntu/FlaskWebApp
+        state: directory
+
+    - name: Upload Flask application file
+      copy:
+        src: /home/centos/ansible-work5/app.py
+        dest: /home/ubuntu/FlaskWebApp/app.py
+        force: yes
+...
+
