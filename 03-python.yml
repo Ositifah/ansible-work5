@@ -64,11 +64,10 @@
         name: "*"
         state: latest
 
-    
-     - name: Upgrade pip for Python 3
+    - name: Upgrade pip for Python 3
       command: python3 -m pip install --upgrade pip
       args:
-        creates: /usr/bin/pip3
+        creates: /usr/bin/pip3 
 
 
     - name: Install virtualenv using Python 3 pip
