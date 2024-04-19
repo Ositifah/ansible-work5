@@ -1,7 +1,8 @@
 ---
-name: Deploy Flask Application
-  hosts: n1:n5
+- name: Deploy Flask Application on CentOS
+  hosts: n5
   become: yes
+
   tasks:
     - name: Install Flask on CentOS
       when: ansible_distribution == 'CentOS'
@@ -9,10 +10,16 @@ name: Deploy Flask Application
         name: python3-flask
         state: present
 
+- name: Deploy Flask Application on Ubuntu
+  hosts: n1
+  become: yes
+  
+  tasks:
     - name: Install Flask on Ubuntu
       when: ansible_distribution == 'Ubuntu'
       apt:
         name: python3-flask
         state: present
-...        
+
+ ...       
 
