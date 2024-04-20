@@ -25,7 +25,7 @@
 
     - name: Transfer Flask application file
       copy:
-        src: /home/centos/ansible-work5/app.py
+        src: /var/lib/jenkins/workspace/ansible-work5/app.py
         dest: /home/ubuntu/FlaskWebApp/app.py
         mode: 755
 
@@ -100,7 +100,7 @@
         
     - name: Get the .py file
       copy:
-        src: /home/centos/ansible-work5/app.py
+        src: /var/lib/jenkins/workspace/ansible-work5/app.py
         dest: /home/centos/FlaskWebApp/flask-app/app.py
 
     - name: Run the Flask application
